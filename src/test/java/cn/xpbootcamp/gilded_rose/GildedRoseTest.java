@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GildedRoseTest {
 
     @Test
-    void dog() {
+    void noUpdate1() {
         Item[] items = new Item[] {
                 new Item("dog", 10, 20)
         };
@@ -20,16 +20,96 @@ class GildedRoseTest {
     }
 
     @Test
-    void cat() {
+    void noUpdate2() {
         Item[] items = new Item[] {
-                new Item("cat", 20, 30)
+                new Item("dog", 10, 0)
         };
 
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
 
-        assertEquals(19, gildedRose.items[0].sellIn);
+        assertEquals("dog", gildedRose.items[0].name);
+        assertEquals(9, gildedRose.items[0].sellIn);
+        assertEquals(0, gildedRose.items[0].quality);
+    }
+
+    @Test
+    void noUpdate3() {
+        Item[] items = new Item[] {
+                new Item("dog", 1, 51)
+        };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        assertEquals("dog", gildedRose.items[0].name);
+        assertEquals(0, gildedRose.items[0].sellIn);
+        assertEquals(50, gildedRose.items[0].quality);
+    }
+
+    @Test
+    void book0() {
+        Item[] items = new Item[] {
+                new Item("book0", 100, 20)
+        };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        assertEquals(99, gildedRose.items[0].sellIn);
+        assertEquals(19, gildedRose.items[0].quality);
+    }
+
+    @Test
+    void book1() {
+        Item[] items = new Item[] {
+                new Item("book1", 1, 30)
+        };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        assertEquals(0, gildedRose.items[0].sellIn);
         assertEquals(29, gildedRose.items[0].quality);
+    }
+
+    @Test
+    void book2() {
+        Item[] items = new Item[] {
+                new Item("book2", 0, 30)
+        };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        assertEquals(-1, gildedRose.items[0].sellIn);
+        assertEquals(28, gildedRose.items[0].quality);
+    }
+
+    @Test
+    void book3() {
+        Item[] items = new Item[] {
+                new Item("book3", -1, 30)
+        };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        assertEquals(-2, gildedRose.items[0].sellIn);
+        assertEquals(28, gildedRose.items[0].quality);
+    }
+
+    @Test
+    void book4() {
+        Item[] items = new Item[] {
+                new Item("book4", -1, 0)
+        };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        assertEquals(-2, gildedRose.items[0].sellIn);
+        assertEquals(0, gildedRose.items[0].quality);
     }
 
     @Test

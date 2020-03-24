@@ -11,22 +11,10 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             items[i].sellIn -= 1;
 
-            if (items[i].quality > 50) {
-                items[i].quality = 50;
-            }
-
-            if (items[i].quality < 0) {
-                items[i].quality = 0;
-            }
-
             if (items[i].name.equals("Aged Brie")) {
                 if (items[i].quality < 50) {
                     items[i].quality += 1;
                 }
-                continue;
-            }
-
-            if (items[i].name.equals("Sulfuras")) {
                 continue;
             }
 
@@ -43,15 +31,27 @@ class GildedRose {
                 if (items[i].sellIn <= 0) {
                     items[i].quality = 0;
                 }
-                return;
+                continue;
             }
 
-            if (items[i].sellIn <= 0) {
+            if (items[i].sellIn < 0) {
                 items[i].quality -= 2;
             }
 
-            if (items[i].sellIn >= 1) {
+            if (items[i].sellIn >= 0) {
                 items[i].quality -= 1;
+            }
+
+            if (items[i].quality > 50) {
+                items[i].quality = 50;
+            }
+
+            if (items[i].quality < 0) {
+                items[i].quality = 0;
+            }
+
+            if (items[i].name.equals("Sulfuras")) {
+                continue;
             }
         }
     }

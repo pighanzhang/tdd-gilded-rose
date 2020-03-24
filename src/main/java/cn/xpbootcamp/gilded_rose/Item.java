@@ -14,6 +14,6 @@ public class Item {
     }
 
     public String toString() {
-        return this.name + ": 保质期->" + this.sellIn + "; 价值->" + this.quality;
+        return "商品->" + this.name + ": 保质期->" + this.sellIn + "; 价值->" + this.quality;
     }
 }
